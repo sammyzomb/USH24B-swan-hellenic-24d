@@ -7,6 +7,9 @@
     [].forEach.call(r.querySelectorAll('img[loading]'),function(i){i.loading='eager'});
     [].forEach.call(r.querySelectorAll('.vm[data-poster]'),function(v){if(v.closest('.hero,.vid,.iceband'))return;var n=v.nextElementSibling;if(n&&n.classList&&n.classList.contains('pv'))return;var i=document.createElement('img');i.className='pv';i.src=v.getAttribute('data-poster');i.alt=v.getAttribute('aria-label')||'';i.style.objectPosition=v.style.backgroundPosition||'50% 50%';v.parentNode.insertBefore(i,v.nextSibling)});
   }
+  function pre(){[].forEach.call(r.querySelectorAll('img[loading]'),function(i){i.loading='eager'})}
+  document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.open-print'))pre()},true);
+  addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='p'||e.key==='P')){e.preventDefault();window.print()}});
   addEventListener('beforeprint',prep);
   var op=window.print;
   window.print=function(){prep();var im=[].filter.call(r.querySelectorAll('img'),function(i){return !i.complete});
